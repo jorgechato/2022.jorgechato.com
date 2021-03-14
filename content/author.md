@@ -1,6 +1,6 @@
 ---
-draft: false
 url: "author/kote"
+type: "author"
 ---
 
 Born in Spain and bred in The Internet.
