@@ -1,0 +1,3 @@
+[submodule "themes/hution"]
+	path = themes/hution
+	url = https://github.com/jorgechato/hution.git

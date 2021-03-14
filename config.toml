@@ -1,0 +1,52 @@
+# Basic config
+theme = "hution"
+baseURL = "https://jorgechato.com"
+title = "jorgechato"
+description = "Experiments, stories and ideas."
+languageCode = "en"
+paginate = 10
+
+enableEmoji = true
+
+googleAnalytics = "UA-XXXXXXXX-XX"
+
+[Author]
+name = "Jorge Chato"
+image = ""
+location = "Tokyo"
+
+# Router
+[permalinks]
+post = "/:title"
+
+[params]
+mainSections = ["post"]
+
+# Nav
+[[params.nav]]
+identifier = "post"
+name = "Home"
+url = "/"
+weight = 3
+
+[[params.nav]]
+identifier = "author"
+name = "About me"
+url = "author/kote"
+weight = 3
+
+# Social
+[[params.social]]
+name="twitter"
+url="https://twitter.com/jorgechato"
+icon="fab fa-twitter"
+
+[[params.social]]
+name="github"
+url="https://github.com/jorgechato"
+icon="fab fa-github"
+
+[[params.social]]
+name="linkedin"
+url="https://www.linkedin.com/in/jorgechato/"
+icon="fab fa-linkedin"
