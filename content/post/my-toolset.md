@@ -34,12 +34,12 @@ Picture this scenario, you are developing your first game. You are probably rela
 
 I was shocked in my solo trip around Japan when in a conversation with a girl she mentioned she used to check her **bank account** with random **free wifi**. That been said, this is the list of applications I use to keep by data secure.
 
-{{< figure src="/images/2020/01/photo_2020-01-19-08.23.16-1.jpeg" >}}
+{{< figure src="/img/2020/01/photo_2020-01-19-08.23.16-1.jpeg" >}}
 
 * **OpenVPN**: Personal server with openVPN, an open-source commercial software that implements virtual private network techniques to create secure point-to-point or site-to-site connections in routed or bridged configurations and remote access facilities. It uses a custom security protocol that utilizes SSL/TLS for key exchange.
 * **[ExpressVPN](https://www.linkev.com/?a_aid=orggue)**: is a virtual private network service. The software is marketed as a privacy and security tool that encrypts users’ web traffic and masks their IP addresses.
 
-<a href="https://www.xvbelink.com/?a_fid=orggue"><img src="/content/images/2020/01/expressvpn.jpg" target="_blank" alt="ExpressVPN"></a>
+<a href="https://www.xvbelink.com/?a_fid=orggue"><img src="/content/img/2020/01/expressvpn.jpg" target="_blank" alt="ExpressVPN"></a>
 
 * **[Strongbox](https://strongboxsafe.com/)**: A [freemium](https://en.wikipedia.org/wiki/Freemium) open source password manager. The passwords are locked inside a highly-encrypted database (.**[kdbx](https://keepass.info/help/kb/kdbx_4.html)** file) using a master key **file**.
 * **[Authy](https://authy.com/)**: Two-factor authentication (2FA) adds an additional layer of protection beyond passwords. This blocks anyone using your stolen data by verifying your identity through your device.
@@ -47,7 +47,7 @@ I was shocked in my solo trip around Japan when in a conversation with a girl sh
 
 ## Text editor or IDEs
 
-{{< figure src="/images/2020/01/vim-logo-png-transparent-2.png" >}}
+{{< figure src="/img/2020/01/vim-logo-png-transparent-2.png" >}}
 
 Depending of the programming language I use to switch between **VIM** and **IntelliJ**, there is no one tool to rule them all. Using the right tool for the right need is key for productivity.
 
@@ -371,7 +371,7 @@ let xml_syntax_folding=1      " XML
 " }}}
 ```
 
-{{< figure src="/images/2020/01/kB8CZsMfSZu26SCQDi_JYAYSJBs1V4itKUL-64Fmnis-1.jpg" >}}
+{{< figure src="/img/2020/01/kB8CZsMfSZu26SCQDi_JYAYSJBs1V4itKUL-64Fmnis-1.jpg" >}}
 
 For Java, Scala, Flutter, Kotlin, **[INTELLIJ](https://www.jetbrains.com/idea/)** makes a lot of sense.
 
