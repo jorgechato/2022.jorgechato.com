@@ -1,0 +1,116 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><title>The power of docker's MICRO images, a Golang journey Vol.1 |
+jorgechato</title><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=alternate type=application/rss+xml href=https://jorgechato.comindex.xml title=jorgechato><link rel=icon type=image/png href=/img/favicon.png><meta name=twitter:card content="summary"><meta name=twitter:title content="The power of docker's MICRO images, a Golang journey Vol.1"><meta name=twitter:description content="A Golang journey is a series of articles about golang as microservice.
+It is a complementary set for the platform journey series.
+In this first volume we will cover the docker images and CI/CD pipeline."></head><body><header class="header bg-header w-full text-sm flex items-center sticky top-0 z-20"><div class="header-wrap mx-auto flex items-center flex-auto px-4 w-full max-w-extreme"><div class="header-left mr-5 flex flex-none items-center"><a href=/ class="header-logo inline-block leading-none godo-tracking" data-event-category=Header data-event-action=Logo data-event-label=Click data-event-non-interaction=true><span class="text-2xl font-bold">jorgechato</span></a></div><nav class="header-center mainMenu relative flex items-center pr-5 flex-grow overflow-auto lg:overflow-visible"><ul itemscope itemtype=http://www.schema.org/SiteNavigationElement class="nav whitespace-no-wrap hidden lg:flex"><li itemprop=name class=ml-5><a itemprop=url href=https://whereisjorge.today/ class="mainMenu-link godo-tracking hover:text-primary font-medium" data-event-category=Header data-event-action=Menu data-event-non-interaction=true>Where is jorge Today?</a></li><li itemprop=name class=ml-5><a itemprop=url href=/tags/hack class="mainMenu-link godo-tracking hover:text-primary font-medium" data-event-category=Header data-event-action=Menu data-event-non-interaction=true>Hacking</a></li><li itemprop=name class=ml-5><a itemprop=url href=/tags/code class="mainMenu-link godo-tracking hover:text-primary font-medium" data-event-category=Header data-event-action=Menu data-event-non-interaction=true>Coding</a></li><li itemprop=name class=ml-5><a itemprop=url href=/author/jorge-chato class="mainMenu-link godo-tracking hover:text-primary font-medium" data-event-category=Header data-event-action=Menu data-event-non-interaction=true>About me</a></li><li class="dropdown is-hoverable ml-5 hidden"><a href=# class="mainMenu-link dropdown-trigger hover:text-primary font-medium"><span>More</span><svg class="icon is-small transform rotate-90"><use xlink:href="#icon-arrow-forward"/></svg></a><div class="dropdown-menu whitespace-normal"><div class=dropdown-content><div class=js-dropdown-menu></div><hr class=dropdown-divider><div class="js-social-media social-media social-media"><a href=https://twitter.com/jorgechato title=undefined class="hover:text-twitter p-2 inline-block" target=_blank rel="noopener noreferrer"><svg class="icon icon--twitter"><use xlink:href="#icon-twitter"/></svg></a><a href=http://github.com/jorgechato title=undefined class="hover:text-github p-2 inline-block" target=_blank rel="noopener noreferrer"><svg class="icon icon--github"><use xlink:href="#icon-github"/></svg></a><a href=https://www.linkedin.com/in/jorgechato title=undefined class="hover:text-linkedin p-2 inline-block" target=_blank rel="noopener noreferrer"><svg class="icon icon--linkedin"><use xlink:href="#icon-linkedin"/></svg></a></div></div></div></li></ul></nav><div class="header-right flex-none flex justify-end items-center u-menu-color"><button type=checkbox class="js-dark-mode button is-white items-center hidden mr-2 md:flex custom-control-input" id=darkSwitch>
+🌗</button>
+<a href=javascript:; aria-label="Toggle Search" class="js-modal-button godo-tracking button is-white mr-2" data-target=modal-search aria-haspopup=true data-event-category=Header data-event-action=Search data-event-label=Click data-event-non-interaction=true><svg class="icon icon--search"><use xlink:href="#icon-search"/></svg></a><div class="js-menu-toggle menu-burger button is-white relative ml-2 lg:hidden"><span></span><span></span><span></span></div></div></div></header><div class="post-header px-4 mx-auto max-w-740 relative z-3 pt-8"><div class=intro-header><div class=post-heading><div class="mb-3 text-gray-400 tracking-wider text-sm font-medium"><a title=code href=https://jorgechato.comtags/code/>CODE
+</a>&nbsp;
+<a title=golang href=https://jorgechato.comtags/golang/>GOLANG
+</a>&nbsp;
+<a title=pipeline href=https://jorgechato.comtags/pipeline/>PIPELINE
+</a>&nbsp;
+<a title=microservice href=https://jorgechato.comtags/microservice/>MICROSERVICE
+</a>&nbsp;
+<a title=golang-journey href=https://jorgechato.comtags/golang-journey/>GOLANG-JOURNEY
+</a>&nbsp;</div><h1 class="post-title text-32 md:text-4xl lg:text-44 text-title"><span class=emoji>🐳</span>
+The power of docker's MICRO images, a Golang journey Vol.1</h1><div class="post-excerpt mt-6 text-22 text-gray-500"><p>A Golang journey is a series of articles about golang as microservice.
+It is a complementary set for the platform journey series.
+In this first volume we will cover the docker images and CI/CD pipeline.</p></div><div class="meta hh flex items-center relative z-4 flex-auto leading-snug overflow-hidden"><ul class="hh-author flex flex-wrap flex-none mr-3"><li class="hh-author-item realtive"><span class="relative block avatar is-45x45"><a href=https://jorgechato.com/author/jorge-chato/><img class="no-zoom absolute u-image block rounded-full" src="https://avatars.githubusercontent.com/u/4450555?v=4" alt="Go to the profile of Jorge Chato"></a></span></li></ul><div class="hh-right flex-auto overflow-hidden"><div class="hh-author-name text-sm noWrapWithEllipsis"><a href=https://jorgechato.com/author/jorge-chato/>Jorge Chato</a></div><div class="hh-date flex items-center text-gray-500 text-sm">23 Apr 2020
+<span class="bull mx-1">·</span>
+2 min read</div></div></div></div></div></div><div class="post-wrap max-w-1100 relative mx-auto"><div class="px-4 mx-auto max-w-740 relative" role=main><article class="article post-body" id=post-body><p>I know, It might be difficult sometimes, the process of <strong>building your images</strong> with any kind of constrain (monetary, computational, size&mldr;) was always kept me awake at night.</p><p>After all building a <strong>super small image</strong> is always a good idea. It doesn&rsquo;t matter the outcome, your client might be happier spending less resources, you might be happier to have more space to deploy more services in the same instance or cluster&mldr;</p><p>Docker has been around for some time now and you probably know already the goodies of it (check <a href=/tag/platform-journey/><em>the platform journey series</em></a> to see how <strong>ECS</strong> can handle your containers).</p><p>In this article we are going to work with <strong>Docker&rsquo;s multistage builds</strong> as well as some tricks and hacks for <strong>scratch images</strong>. Here we will set the entry point for the <em>Golang journey</em> series.</p><div class=highlight><pre class=chroma><code class=language-docker data-lang=docker><span class=k>FROM</span><span class=s> golang:latest</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>WORKDIR</span><span class=s> /go/src/app</span><span class=err>
+</span><span class=err></span><span class=k>COPY</span> . .<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>RUN</span> go get -d -v ./...<span class=err>
+</span><span class=err></span><span class=k>RUN</span> go install -v ./...<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>CMD</span> <span class=p>[</span><span class=s2>&#34;app&#34;</span><span class=p>]</span><span class=err>
+</span></code></pre></div><blockquote><p><strong>FROM</strong> scratch</p></blockquote><p>Most Dockerfiles start from a parent image. The <em>scratch</em> image is the most minimal image in Docker. This is the base ancestor for all other images.</p><p>There are some reasons to go for an image from scratch beside the size of the resulting size image.</p><p>Attack surface is less provable because we reduce the dependencies (layers) on other images, meaning what&rsquo;s really needed to execute your application is in the image. Handling the required dependencies ourselves for our application is the price we pay for the goodies of a base image.</p><h2>Table of content</h2><nav id=TableOfContents><ul><li><a href=#how-does-a-pipelinehttpstravis-cicomjorgechatoapijorgechatocom-looks-like>How does a <a href=https://travis-ci.com/jorgechato/api.jorgechato.com>pipeline</a> looks like?</a></li></ul></nav><h2 id=how-does-a-pipelinehttpstravis-cicomjorgechatoapijorgechatocom-looks-like>How does a <a href=https://travis-ci.com/jorgechato/api.jorgechato.com>pipeline</a> looks like?</h2><figure><img src=/img/2019/09/ecr.png></figure><p>Let&rsquo;s assume our pipeline involves upload and tag an image into <strong>AWS ECR</strong>. After I commit my changes into a repository I get all the feedback about my code analysis and tests in a production like environment.</p><p>A basic <em><a href=https://travis-ci.com>travis</a></em> pipeline would looks like the following:</p><div class=highlight><pre class=chroma><code class=language-yaml data-lang=yaml><span class=nt>dist</span><span class=p>:</span><span class=w> </span><span class=l>trusty</span><span class=w>
+</span><span class=w></span><span class=nt>sudo</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span><span class=w></span><span class=nt>language</span><span class=p>:</span><span class=w> </span><span class=l>go</span><span class=w>
+</span><span class=w></span><span class=nt>go</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=m>1.12</span><span class=l>.x</span><span class=w>
+</span><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>docker</span><span class=w>
+</span><span class=w></span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>global</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span>- <span class=l>IMAGE_NAME=api-jorgechato-com</span><span class=w>
+</span><span class=w>  </span>- <span class=nt>secure</span><span class=p>:</span><span class=w> </span><span class=l>cHNC4ysYBXJdVyod42z3chXLH0V7n231fPeLjDjpYiW2OekAYKcIxIa+egSnXT9VdFQZt/vCNw4t9d5/6d/9zyn3sdBj7ll+zpB+OFdFzd2wey4e8U1ZTa2DLHcWs/CERnbsP1YWw0NHi/FQ771OavskGoDa8CM6K3TtquVMGyefB6V80XC3OJNHZXcCgfA+qbhGOdHQIbcIhU7d0vbJDveuye4Saq+MVltxPeaXRQbUlZmQisvlzSgabtfvDC0nQWy5v+9YJUGIGTWj15/q0aDpVkiE2ehqlj5G5d8Tl3RpqXEb15Dzrh93K9mBP0LnmlGs1eNZ+rJZ1H067yeE76+Fgkp14aD/WZxjZ0sY41W+eS0ySx6Gv1UoDm5658O2PTpTgRcX4W+k56YNsUBL6dUyVlDaKKtkRT3GnGkX7D+yjgFsGIRl0qec9OK9gOHyhh2x2RfbupO/aCghuBAf3I94LvOk0wpYUmL6jS5B5mBGCRz0YYFdSeAda/nq1KpRAwV67etALPuHAT9FXHV2EAJxIoe5zkCwvI2Bo4NhiIzSCWAt7VWoUJdXJ0nodCLDoFXMITid+ADvl8YcT756mGmqFlomh0QB6LRy8F+4XUNpOJ0RFf+Ndv3SYUDBtN4CJC+Y7ocwBoGxxRDlrDBgHCK3o92DXKSBNUO4UEYJ1Es=</span><span class=w>
+</span><span class=w>  </span>- <span class=nt>secure</span><span class=p>:</span><span class=w> </span><span class=l>cQlLnVPRU8WhrRuWRbQrCV0ipWC5gG1JzxIOSiKDSbnAe5YoJJOAaW6js2RdRxbCn7u+vBBpNt6dF3qNeP4WRs9wrjy5zL/sbrlOtySZ0GWPawT1RxGYcEJYVv9LpcPGXPr3AkjNHoC51T7pwOf86pHCAzNJpW5JpgQpEuuCTvsQyMXzdG7jjIYH4Yx0sFoG49VDHEb5Vbz8qjHU3lc9fLVlmWyrjVWVWU3lcGJrmZIkUS3k1zTLSIDYIu8NIwXQteE3TLwSryBl/CROTW/ex9u3F9SMXO8xTVWNUIUl/SfUmowegCfh5plojoG3ZslaJVgtdSRT6x/LNgvGYcIFgYscWrZAMFBzTPrWIEbaovO3ewSv3/IakMklhN7pUKPZxEe+ISIKJOZjXGCzWhrmQ1nPXbblbYhtRwCSoFfOe2Q5ugQqribgu1OelQgifBPl+8QBGHQuknI0dJGjU7Z19HxXRD9WLeYPeud83PMWL0mbvzJ2qdvRfqE7Qpuo+ZhAPPTSYxJjB7YYaUhXtlUp4PqX42o0Oc8UM2Y5OuyxvnHNQBZ4kWBRSWlbvF4myryy3ESEknG6ME9bYe55xnxw+XgiQZvp1X2S9u25cwUzFJJcEyZbcRWk8ZYNadrABTHVRfqjpMyl+Wi1DiMOd2eaI2BGFAP/gh6lDnjkeXgzsZg=</span><span class=w>
+</span><span class=w>  </span>- <span class=nt>secure</span><span class=p>:</span><span class=w> </span><span class=l>z2eIMvTcbRTya9iSNRkEvlodrgbL2bVXCpa2WryboqkEcjSG8MBolvr7hHQF21PHWPtvziFxqdg+BoJBGHHZ4X4qxxnTFjB+Bd2PLVNlXlBwtJm+jw4Ew0UbegV8P/H7G3lOhWChCewaLunWGTW4YMkwHwDr+5gGNFxtn+KBRWFYtmbsdU+FjSsNljmzs/f3vqkvmy5BOJgbYy9KhaoJ+YButYyRpgb+qcdGgK/0r6lQ9cuuwNEv1VSYv0HCR1M8btPZQ2lQ31VoSXoDwbleu0g9+WCOII68jDKqr6TYoK7YMAz6D36Gygz2VTRU+IjhztNGyjLCDOPCtvg1dW1qyUczjG4uv622RjLBMVddwtob+r2UbjqmbBMyfOF0/L9gxRVHe6DlB6JAiJ4g7AkNflFJF0YUBud8eWewLJMJGRwPkUEifRhaKzvpM7mz5fbfL8qpEazhKkXBCOE2C5HPPrNQkgyxSB5N+jwQyvXoyQQMJjwM0gyUuuJwwhapxjc2NobT9op+gJP6cwC/nTaTUA36drsoRah0BJXP81yFp5EnY/uZAO/dOL2B0G4mC5z0Tb0ChhFk9QnqvgMBRar2cBYRk55N7JUVyCHfdDmokYEhYxk88aqZNmVstqVCuq41/vcnInfx0Yz4UPcME2DGEEXr9TOt2uBLveM9sSl+GOg=</span><span class=w>
+</span><span class=w>  </span>- <span class=nt>secure</span><span class=p>:</span><span class=w> </span><span class=l>TFX7gkzru36X2diSYve7ynCVMKHiK0Ob4PV9SJ3e1FUK6OcFjQyARjGtD8ZJG0hTjxGgmyX4toO7yB5vRV4U4T3tFttQSXC7kEaIVCkrhDNvVF22TAh8qMVOCz78sexd8dT/gklX2SyjJFeTGu0NW2juI1TEESqhkMHo8k/qLl9xFEmtMXeoB0UdRGq19OCfPuSxXZKxLb+QFlmgcqS9F9GRzfuM4UYvRXp6aGhsUikCiAvaoOgM2wrZDdCADqMjipe5k1SCcqN5LmqbLUblOANwAPKnr9S1S0kPpndX3u4PIRIIlGq670KjsaT9UDW49VMwjx6LppE6H+429lmQ6GTlEAe3Ks1+VAgdo8Baio8PLrlnWNwORUc6Um2z3qsiATalvf//N/o2ailXM772Dwkqgp3XH3jl0OkKnpiLO77svE6Y18fXw59bctacd4Ujz/P/FEs6LOecEHWSzSsNfJ3iwaiHu8GoigWLxtkiry8uBLeYLmjF5JneMZC4knEpuDGAnMo7VvI8IMBZAGL57aaHOQ3wG+gXGk15YJTiDYpB0SXWvco5c3zcMT0bvwmqLUihUMJiRNqnP3pu99rRAD7dnA65NARQjM99Gd4VASpMKESUutTCfVTeN2JjwVA9cdOMPW9u2ZwxHhaluFMvm4X4A2KyJaLmwRP6tyWSdQs=</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>before_install</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>pip install --user awscli</span><span class=w>
+</span><span class=w></span>- <span class=l>export PATH=$PATH:$HOME/.local/bin</span><span class=w>
+</span><span class=w></span><span class=nt>install</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>go mod download</span><span class=w>
+</span><span class=w></span>- <span class=l>go mod verify</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>script</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>go test -race -cover -v -coverprofile=coverage.out ./... &gt; test.output</span><span class=w>
+</span><span class=w></span><span class=nt>after_success</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>docker build --pull --cache-from ${IMAGE_NAME} --tag ${IMAGE_NAME} .</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span><span class=w>  </span><span class=nt>provider</span><span class=p>:</span><span class=w> </span><span class=l>script</span><span class=w>
+</span><span class=w>  </span><span class=nt>script</span><span class=p>:</span><span class=w> </span><span class=l>bash lazy.sh</span><span class=w>
+</span><span class=w>  </span><span class=nt>target-branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span><span class=w>  </span><span class=nt>on</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=nt>branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span><span class=w></span><span class=nt>after_script</span><span class=p>:</span><span class=w>
+</span><span class=w></span>- <span class=l>docker images</span><span class=w>
+</span></code></pre></div><p>Where the lazy.sh is nothing but a registry tag and upload.</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash -e
+</span><span class=cp></span>
+<span class=nv>REGISTRY_URL</span><span class=o>=</span><span class=si>${</span><span class=nv>AWS_ACCOUNT_ID</span><span class=si>}</span>.dkr.ecr.<span class=si>${</span><span class=nv>AWS_REGION</span><span class=si>}</span>.amazonaws.com
+
+aws configure <span class=nb>set</span> default.region <span class=si>${</span><span class=nv>AWS_REGION</span><span class=si>}</span>
+
+<span class=k>$(</span>aws ecr get-login --no-include-email<span class=k>)</span>
+
+docker tag <span class=si>${</span><span class=nv>IMAGE_NAME</span><span class=si>}</span> <span class=si>${</span><span class=nv>REGISTRY_URL</span><span class=si>}</span>/<span class=si>${</span><span class=nv>IMAGE_NAME</span><span class=si>}</span>:latest
+
+docker push <span class=si>${</span><span class=nv>REGISTRY_URL</span><span class=si>}</span>/<span class=si>${</span><span class=nv>IMAGE_NAME</span><span class=si>}</span>:latest
+</code></pre></div><p>If we dive into the <em>Dockerfile</em> we will find two <strong>FROM</strong> statement in a single file.</p><div class=highlight><pre class=chroma><code class=language-Docker data-lang=Docker><span class=k>FROM</span><span class=s> golang:1.12-alpine as builder</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>RUN</span> apk add -U --no-cache git ca-certificates tzdata<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>COPY</span> . /app<span class=err>
+</span><span class=err></span><span class=k>WORKDIR</span><span class=s> /app</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>RUN</span> go mod download<span class=err>
+</span><span class=err></span><span class=k>RUN</span> go mod verify<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>RUN</span> <span class=nv>CGO_ENABLED</span><span class=o>=</span><span class=m>0</span> <span class=nv>GOOS</span><span class=o>=</span>linux <span class=nv>GOARCH</span><span class=o>=</span>amd64 go build -a -installsuffix cgo -ldflags<span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>LDFLAGS</span><span class=si>}</span><span class=s2>&#34;</span> -o server server.go<span class=err>
+</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>FROM</span><span class=s> scratch as final</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>ENV</span> <span class=nv>GIN_MODE</span><span class=o>=</span>release
+
+<span class=k>COPY</span> --from<span class=o>=</span>builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/<span class=err>
+</span><span class=err></span><span class=k>COPY</span> --from<span class=o>=</span>builder /usr/share/zoneinfo /usr/share/zoneinfo<span class=err>
+</span><span class=err></span><span class=k>COPY</span> --from<span class=o>=</span>builder /app/server /opt/server<span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=k>ENTRYPOINT</span> <span class=p>[</span><span class=s2>&#34;/opt/server&#34;</span><span class=p>]</span><span class=err>
+</span></code></pre></div><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash>$ docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+api-jorgechato-com            latest              6ce8bbe28d7e        <span class=m>19</span> seconds ago      21.2MB
+&lt;none&gt;                        &lt;none&gt;              d39b7d2094c1        <span class=m>20</span> seconds ago      567MB
+golang                        1.12-alpine         e0d646523991        <span class=m>5</span> days ago          350MB
+
+</code></pre></div><p>Having a look at the images created, <strong>golang:1.12-alpine</strong> is the base image that we used to build or service. The residual image is tag as <strong></strong>and comparing the size of it with the service image <strong>api-jorgechato-com,</strong> the difference is huge.</p><p>Since the <strong>scratch</strong> image is dependences free you might end up with errors you have never experience in a development environment. There is a need to be extra cautious about what your service required, SSL request (ca-certificates), current time (zoneinfo)&mldr; At the end you are building your environment from <em>SCRATCH</em>.</p><div class="post-tags mb-8"><div class=buttons><a class="button is-light font-medium text-sm capitalize godo-tracking" href=https://jorgechato.comtags/code/>code
+</a>&nbsp;
+<a class="button is-light font-medium text-sm capitalize godo-tracking" href=https://jorgechato.comtags/golang/>golang
+</a>&nbsp;
+<a class="button is-light font-medium text-sm capitalize godo-tracking" href=https://jorgechato.comtags/pipeline/>pipeline
+</a>&nbsp;
+<a class="button is-light font-medium text-sm capitalize godo-tracking" href=https://jorgechato.comtags/microservice/>microservice
+</a>&nbsp;
+<a class="button is-light font-medium text-sm capitalize godo-tracking" href=https://jorgechato.comtags/golang-journey/>golang-journey
+</a>&nbsp;</div></div></article></div></div><footer class="footer-light py-10 lg:pt-16 text-center lg:text-left"><div class="mx-auto max-w-extreme px-4"><div class="flex flex-col lg:flex-row justify-between"><div class="footer-copy text-sm order-3 mt-8 flex-none lg:text-left lg:order-none lg:mt-0">&copy; 2020
+<a href=https://jorgechato.com>jorgechato</a>.
+All rights reserved.<div class=mt-2>Design with <span class="icon animated infinite pulse">❤️</span> by
+<a href=https://jorgechato.com/>@jorgechato</a>.
+<a href=https://github.com/jorgechato/hution>Hution</a> Theme.</div></div><div class="js-social-media social-media footer-social-media mt-8 flex-none lg:mt-0 is-inline"><div><a href=https://twitter.com/jorgechato target=_blank name=twitter><em class="fab fa-twitter"></em></a><a href=https://github.com/jorgechato target=_blank name=github><em class="fab fa-github"></em></a><a href=https://www.linkedin.com/in/jorgechato/ target=_blank name=linkedin><em class="fab fa-linkedin"></em></a><link rel=stylesheet href=https://jorgechato.comcss/main.css><link rel=stylesheet href=https://jorgechato.comcss/base.css><link rel=stylesheet href=https://jorgechato.comcss/github.css><link rel=stylesheet href=https://jorgechato.comcss/zooming.css><link rel=stylesheet href=https://jorgechato.comcss/dark-mode.css><script src=https://jorgechato.comjs/main.js></script><script src=https://jorgechato.comjs/dark-mode-switch.min.js></script><script src=https://jorgechato.comjs/zooming.min.js></script><script>document.addEventListener('DOMContentLoaded',function(){new Zooming({bgColor:"var(--bg)",bgOpacity:.9,scaleBase:.9}).listen('figure>img:not(.no-zoom)')})</script><meta name=generator content="Hugo 0.83.1"></div></div></footer></body></html>
