@@ -32,18 +32,7 @@ summary: |
 
 You are provably aware of the current infrastructure and programming pattern I am building for this series **_[a platform journey](/tag/platform-journey/)_** (I will cover extra details in future volumes). More specifically, we already discussed the limitations of it and the overall picture in [Volume 1](/how-to-destroy-your-aws-services/). Volume 2 will explain the thought process of building one of the cheapest components of the platform as well as the technical side of the application.
 
-## Table of content
-
 Since this article is a set of skills, from integration patters to CI/CD pipelines and secrets configuration. This _TOC_ will help you to navigate through and skip the sections you already master.
-
-* [Integration pattern](#integration-pattern)
-* [Setting the Github Token](#setting-the-github-token)
-* [Pipeline in Travis (CI/CD)](#pipeline-in-travis-ci-cd-)
-* [DNS management](#dns-management)
-* [S3 vs Github Pages](#s3-vs-github-pages)
-* [S3 alternative with Terraform](#s3-alternative-with-terraform)
-
----
 
 ## Integration pattern
 

@@ -166,5 +166,4 @@ heresareallystrongpasswordthatfollowsthepasswordpolicy$$
 
 > The stream is in **Spanish**
 
-<iframe width="480" height="270" src="https://www.youtube.com/embed/UK9YkhEI4CU?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+{{< youtube UK9YkhEI4CU >}}
