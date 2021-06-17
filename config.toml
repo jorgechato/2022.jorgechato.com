@@ -7,13 +7,14 @@ languageCode = "en"
 paginate = 10
 
 enableEmoji = true
+pygmentsUseClasses = true
 
-googleAnalytics = "UA-XXXXXXXX-XX"
+googleAnalytics = "UA-146816931-1"
 
-[Author]
-name = "Jorge Chato"
-image = ""
-location = "Tokyo"
+[taxonomies]
+author = "author"
+tag = "tags"
+category = "categories"
 
 # Router
 [permalinks]
@@ -25,16 +26,24 @@ favicon = "/img/favicon.png"
 
 # Nav
 [[params.nav]]
-identifier = "post"
-name = "Home"
-url = "/"
+name = "Where is jorge Today?"
+url = "https://whereisjorge.today/"
+weight = 1
+
+[[params.nav]]
+name = "Hacking"
+url = "tags/hack"
+weight = 2
+
+[[params.nav]]
+name = "Coding"
+url = "tags/code"
 weight = 3
 
 [[params.nav]]
-identifier = "author"
 name = "About me"
-url = "author/kote"
-weight = 3
+url = "author/jorge-chato"
+weight = 4
 
 # Social
 [[params.social]]
