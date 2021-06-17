@@ -1,6 +1,6 @@
 # Basic config
 theme = "hution"
-baseURL = "https://jorgechato.com"
+baseURL = "https://jorgechato.github.io/jorgechato.com"
 title = "jorgechato"
 description = "Experiments, stories and ideas."
 languageCode = "en"
