@@ -21,7 +21,6 @@ tags:
 - javascript
 - github
 - nuxt
-draft: false
 toc: true
 summary: |
   A Platform journey is a series of articles with the goal of discussing the

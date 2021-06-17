@@ -15,7 +15,6 @@ tags:
 - pipeline
 - microservice
 - golang-journey
-draft: false
 toc: true
 summary: |
   A Golang journey is a series of articles about golang as microservice.

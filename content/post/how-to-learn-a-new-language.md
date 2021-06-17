@@ -7,7 +7,6 @@ categories:
 - code 
 tags:
 - code
-draft: false
 toc: true
 backtotop: false
 summary: |
