@@ -1,7 +1,7 @@
 ---
 name: Jorge Chato
 photo: https://avatars.githubusercontent.com/u/4450555?v=4
-location: Tokyo
+location: Seoul, South Korea
 twitter: "@jorgechato"
 twitch: ""
 github: ""
