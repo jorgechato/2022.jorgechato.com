@@ -1,5 +1,5 @@
 ---
-name: Jorge Chato
+name: Jorge
 photo: https://avatars.githubusercontent.com/u/4450555?v=4
 location: Seoul, South Korea
 twitter: "@jorgechato"
