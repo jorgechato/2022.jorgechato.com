@@ -42,7 +42,7 @@ weight = 3
 
 [[params.nav]]
 name = "About me"
-url = "author/jorge-chato"
+url = "author/jorge"
 weight = 4
 
 # Social
