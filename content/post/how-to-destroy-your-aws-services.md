@@ -2,7 +2,7 @@
 emoji: ":package:"
 title: "How to DESTROY your AWS services, a Platform journey Vol.1"
 date: "2019-09-07T13:21:19Z"
-author: Jorge Chato
+author: Jorge
 categories:
 - code
 - terraform

@@ -2,7 +2,7 @@
 emoji: ":hammer_and_wrench:"
 title: "My TOOLSET"
 date: "2020-01-19T16:38:01Z"
-author: Jorge Chato
+author: Jorge
 categories:
 - code
 - terminal

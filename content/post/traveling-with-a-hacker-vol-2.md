@@ -2,7 +2,7 @@
 emoji: ":map:"
 title: "Traveling with a HACKER Vol.2"
 date: "2019-10-21T08:36:17Z"
-author: Jorge Chato
+author: Jorge
 categories:
 - terminal
 - traveling-with-a-hacker

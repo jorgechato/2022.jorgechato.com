@@ -2,7 +2,7 @@
 emoji: ":money_with_wings:"
 title: "The CHEAPEST server ever, a Platform journey Vol.2"
 date: "2019-09-22T13:29:03Z"
-author: Jorge Chato
+author: Jorge
 categories:
 - code
 - pipeline
