@@ -1,5 +1,4 @@
 ---
-emoji: ":whale:"
 title: "The power of docker's MICRO images, a Golang journey Vol.1"
 date: "2019-09-15T12:14:00Z"
 author: Jorge

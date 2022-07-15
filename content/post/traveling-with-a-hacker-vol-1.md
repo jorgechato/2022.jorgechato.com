@@ -1,5 +1,4 @@
 ---
-emoji: ":map:"
 title: "Traveling with a HACKER Vol.1"
 date: "2019-10-14T02:43:58Z"
 author: Jorge

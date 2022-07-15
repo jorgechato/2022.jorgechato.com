@@ -26,8 +26,8 @@ favicon = "/img/favicon.png"
 
 # Nav
 [[params.nav]]
-name = "Where is jorge Today?"
-url = "https://whereisjorge.today/"
+name = "Podcast"
+url = "https://noaptoen.asia/"
 weight = 1
 
 [[params.nav]]

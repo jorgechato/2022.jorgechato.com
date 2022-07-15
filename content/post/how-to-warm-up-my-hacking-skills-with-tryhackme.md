@@ -1,5 +1,4 @@
 ---
-emoji: ":thermometer:"
 title: "How to Warm Up my HACKING skills with TryHackMe"
 date: "2020-04-23T14:17:03Z"
 author: Jorge

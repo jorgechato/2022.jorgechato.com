@@ -1,5 +1,4 @@
 ---
-emoji: ":writing_hand:"
 title: "How to Learn a New Language"
 date: 2019-08-31T12:48:29Z
 author: Jorge
